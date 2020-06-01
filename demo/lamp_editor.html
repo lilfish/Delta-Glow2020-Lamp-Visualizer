@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // when life is settled, load up the fun stuff
+        document.addEventListener('DOMContentLoaded', function () {
+            new Vue({
+                el: '#app',
+                data: {
+                    info: null,
+                    myTimer: null,
+                    infoTimer: null,
+                    rgba: "0,0,0,0",
+                    r: 255,
+                    g: 255,
+                    b: 255,
+                    a: 1,
+                    lamp: [
+                        {
+                            id: 0,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 1,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 2,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 3,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 4,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 5,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 6,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 7,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 8,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 9,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 10,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 11,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 12,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 13,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 14,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 15,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 16,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 17,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 18,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 19,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 20,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 21,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 22,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 23,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 24,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 25,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 26,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 27,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 28,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 29,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 30,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 31,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 32,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 33,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 34,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 35,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 36,
+                            value: "255,255,255,1"
+                        }, {
+                            id: 37,
+                            value: "255,255,255,1"
+                        }
+                    ],
+                },
+                mounted() {
+                    this.sendUpdate();
+                },
+                computed: {
+                    computedInfo: function () {
+                        return this.info;
+                    }
+                },
+                methods: {
+                    mouseOver: function (lamp) {
+                        if (event.buttons) {
+                            this.lamp[lamp].value = `${this.r},${this.g},${this.b},${this.a}`;
+                            clearTimeout(this.myTimer);
+                            this.myTimer = setTimeout(() => {
+                                this.sendUpdate()
+                            }, 1000);
+                        }
+                    },
+                    mouseClick: function (lamp) {
+                        this.lamp[lamp].value = `${this.r},${this.g},${this.b},${this.a}`;
+                        clearTimeout(this.myTimer);
+                        this.myTimer = setTimeout(() => {
+                            this.sendUpdate()
+                        }, 1000);
+                    },
+                    updateInfo: function (text) {
+                        this.info = null;
+                        this.info = text;
+                        clearTimeout(this.infoTimer);
+                        this.infoTimer = setTimeout(() => {
+                            this.info = null
+                        }, 5000);
+                    },
+                    sendUpdate: async function () {
+                        var xhr = new XMLHttpRequest();
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == XMLHttpRequest.DONE) {
+                                if (xhr.status == 200) {
+                                    this.updateInfo("Response was 200, updated");
+                                } else {
+                                    this.updateInfo("Response was not 200, error?");
+                                }
+                            }
+                        }.bind(this);
+                        xhr.open("POST", 'http://localhost:4444', true);
+                        xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+                        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                        xhr.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
+                        xhr.setRequestHeader('Accept', '*/*');
+                        xhr.setRequestHeader('Accept-Encoding', 'gzip, deflate, br');
+                        xhr.send(JSON.stringify({
+                            lights: this.lamp
+                        }));
+                        this.updateInfo("Sending update...");
+                    }
+                }
+            })
+        })
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(211, 211, 211, 0.493);
+            margin: 0;
+            padding: 0;
+        }
+
+        #parent {
+            position: absolute;
+            border-radius: 50%;
+            transform: rotate(0deg);
+            transition: transform 0.7s linear;
+        }
+
+        .border {
+            border: 1px solid rgba(0, 0, 0, 1);
+        }
+
+        .circle {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: 0;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .parent_one {
+            width: 220px;
+            height: 220px;
+        }
+
+        .circle_one {
+            width: 220px;
+            height: 220px;
+        }
+
+        .parent_two {
+            width: 450px;
+            height: 450px;
+        }
+
+        .circle_two {
+            width: 450px;
+            height: 450px;
+        }
+
+        .parent_three {
+            width: 625px;
+            height: 625px;
+        }
+
+        .circle_three {
+            width: 625px;
+            height: 625px;
+        }
+
+        #child {
+            position: absolute;
+            border: 1px solid rgba(0, 0, 0, 1);
+            width: 80px;
+            height: 80px;
+            transform: rotate(0deg);
+            transition: transform 0.7s linear;
+            top: -40px;
+            left: 110px;
+            border-radius: 50%;
+            z-index: 100000;
+        }
+
+        .menu {
+            width: 250px;
+            height: 300px;
+            background-color: gray;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .slider {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .slider-label {
+            width: 75px;
+        }
+
+        .slider-input {
+            flex: 1;
+        }
+
+        .color_preview {
+            margin-top: 20px;
+            width: 100%;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .index {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .info {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- text -->
+    <div id="app">
+        <div class="circle circle_three">
+            <div v-for="(item,index) in lamp" :key="item.id">
+                <div v-if="index < 18" :class="index == 1 ? 'border' : ''" class="parent_three" id="parent"
+                    :style="'transform: rotate('+360/18*index+'deg);'">
+                    <span class="index" unselectable="on">{{ item.id }}</span>
+
+                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                        @mouseover="mouseOver(item.id)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="circle circle_two">
+            <div v-for="(item,index) in lamp" :key="item.id">
+                <div v-if="index >= 18 && index < 30" :class="index == 18 ? 'border' : ''" class="parent_two"
+                    id="parent" :style="'transform: rotate('+360/12*(index-18)+'deg);'">
+                    <span class="index" unselectable="on">{{ item.id }}</span>
+
+                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                        @mouseover="mouseOver(item.id)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="circle circle_one">
+            <div v-for="(item,index) in lamp" :key="item.id">
+                <div v-if="index >= 30" :class="index == 30 ? 'border' : ''" class="parent_one" id="parent"
+                    :style="'transform: rotate('+360/8*(index-30)+'deg);'">
+                    <span class="index" unselectable="on">{{ item.id }}</span>
+
+                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                        @mouseover="mouseOver(item.id)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="slider">
+                <span class="slider-label">R</span>
+                <input id="slider" v-model="r" class="slider-input" type="range" min="0" max="255" value="0">
+            </div>
+            <div class="slider">
+                <span class="slider-label">G</span>
+                <input id="slider" v-model="g" class="slider-input" type="range" min="0" max="255" value="0">
+            </div>
+            <div class="slider">
+                <span class="slider-label">B</span>
+                <input id="slider" v-model="b" class="slider-input" type="range" min="0" max="255" value="0">
+            </div>
+            <div class="slider">
+                <span class="slider-label">A</span>
+                <input id="slider" v-model="a" class="slider-input" type="range" step="0.05" min="0" max="1" value="0">
+            </div>
+            <br>
+            <span>RGBA: ({{ r }}, {{ g }}, {{ b }}, {{ a }})</span>
+            <div class="color_preview" :style="'background-color: rgba('+r+', '+g+', '+b+', '+a+');'">
+
+            </div>
+        </div>
+        <transition name="fade">
+            <div class="info" v-if="info">
+                {{  computedInfo }}
+            </div>
+        </transition>
+    </div>
+</body>
+
+</html>
