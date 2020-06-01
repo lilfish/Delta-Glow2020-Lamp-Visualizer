@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - WalkRound
     - closeScript
     - httpListener
+    - movement
     - walk
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -52,23 +53,23 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11738}
+      Script: {instanceID: 11752}
     - Class: 114
-      Script: {instanceID: 11828}
+      Script: {instanceID: 11842}
     - Class: 114
-      Script: {instanceID: 12392}
+      Script: {instanceID: 12410}
     - Class: 114
-      Script: {instanceID: 12524}
+      Script: {instanceID: 12542}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12698}
     - Class: 114
-      Script: {instanceID: 13052}
+      Script: {instanceID: 13072}
     - Class: 114
-      Script: {instanceID: 13460}
+      Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 13558}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 13634}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -112,6 +113,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.TestRunner.dll
+    namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
+    className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -298,6 +305,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 1cc3b3ccdb0e1116f9d4689020a24a3c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: movement
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -616,7 +629,13 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: closeScript
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: movementKeys
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: H:/Git/Visualizer/Glow2020-Visualizer.exe
+  playerPath: D:/git_repos/GlowVisualizer/Glow2020-Visualizer.exe
