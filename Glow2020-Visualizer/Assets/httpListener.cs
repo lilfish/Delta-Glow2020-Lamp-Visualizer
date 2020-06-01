@@ -47,7 +47,6 @@ public class httpListener : MonoBehaviour
 		listener = new HttpListener ();
 		listener.Prefixes.Add ("http://localhost:"+Settings.Instance.port.ToString() + "/");
 		listener.Prefixes.Add ("http://127.0.0.1:"+Settings.Instance.port.ToString() + "/");
-		listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
 		listener.Start ();
 
 		listenerThread = new Thread (startListener);
@@ -96,12 +95,14 @@ public class httpListener : MonoBehaviour
 
 	private void ListenerCallback (IAsyncResult result)
 	{				
-		var context = listener.EndGetContext (result);		
+		var context = listener.EndGetContext (result);	
+		context.Response.AddHeader("Access-Control-Allow-Origin", "*");
+		context.Response.AddHeader("Access-Control-Allow-Headers", "*");	
 		if (context.Request.QueryString.AllKeys.Length > 0)
 			foreach (var key in context.Request.QueryString.AllKeys) {
 				Debug.Log ("Key: " + key + ", Value: " + context.Request.QueryString.GetValues (key) [0]);
 			}
-
+		
 		if (context.Request.HttpMethod == "POST") {	
 			Thread.Sleep (1000);
 			var data_text = new StreamReader (context.Request.InputStream, context.Request.ContentEncoding).ReadToEnd ();
