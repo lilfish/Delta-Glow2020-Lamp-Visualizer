@@ -204,11 +204,13 @@
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
+            width: 100vw;
+            height: 100vh;
         }
 
         #app {
             width: 100vw;
-            height: 100vh;
+            overflow: hidden;
             background-color: rgba(211, 211, 211, 0.493);
             margin: 0;
             padding: 0;
@@ -337,42 +339,56 @@
             {
             opacity: 0;
         }
+        #outer{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: 0;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: auto;
+            transform: rotate(110deg);
+        }
     </style>
 </head>
 
 <body>
     <!-- text -->
     <div id="app">
-        <div class="circle circle_three">
-            <div v-for="(item,index) in lamp" :key="item.id">
-                <div v-if="index < 18" :class="index == 1 ? 'border' : ''" class="parent_three" id="parent"
-                    :style="'transform: rotate('+360/18*index+'deg);'">
-                    <span class="index" unselectable="on">{{ item.id }}</span>
+        <div id="outer">
+            <div class="circle circle_three">
+                <div v-for="(item,index) in lamp" :key="item.id">
+                    <div v-if="index < 18" :class="index == 1 ? 'border' : ''" class="parent_three" id="parent"
+                        :style="'transform: rotate('+360/18*index+'deg);'">
+                        <span class="index" unselectable="on">{{ item.id }}</span>
 
-                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
-                        @mouseover="mouseOver(item.id)"></span>
+                        <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                            @mouseover="mouseOver(item.id)"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="circle circle_two">
-            <div v-for="(item,index) in lamp" :key="item.id">
-                <div v-if="index >= 18 && index < 30" :class="index == 18 ? 'border' : ''" class="parent_two"
-                    id="parent" :style="'transform: rotate('+360/12*(index-18)+'deg);'">
-                    <span class="index" unselectable="on">{{ item.id }}</span>
+            <div class="circle circle_two">
+                <div v-for="(item,index) in lamp" :key="item.id">
+                    <div v-if="index >= 18 && index < 30" :class="index == 18 ? 'border' : ''" class="parent_two"
+                        id="parent" :style="'transform: rotate('+360/12*(index-18)+'deg);'">
+                        <span class="index" unselectable="on">{{ item.id }}</span>
 
-                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
-                        @mouseover="mouseOver(item.id)"></span>
+                        <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                            @mouseover="mouseOver(item.id)"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="circle circle_one">
-            <div v-for="(item,index) in lamp" :key="item.id">
-                <div v-if="index >= 30" :class="index == 30 ? 'border' : ''" class="parent_one" id="parent"
-                    :style="'transform: rotate('+360/8*(index-30)+'deg);'">
-                    <span class="index" unselectable="on">{{ item.id }}</span>
+            <div class="circle circle_one">
+                <div v-for="(item,index) in lamp" :key="item.id">
+                    <div v-if="index >= 30" :class="index == 30 ? 'border' : ''" class="parent_one" id="parent"
+                        :style="'transform: rotate('+360/8*(index-30)+'deg);'">
+                        <span class="index" unselectable="on">{{ item.id }}</span>
 
-                    <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
-                        @mouseover="mouseOver(item.id)"></span>
+                        <span :style="'background-color: rgba('+item.value+')'" id="child" @click="mouseClick(item.id)"
+                            @mouseover="mouseOver(item.id)"></span>
+                    </div>
                 </div>
             </div>
         </div>
